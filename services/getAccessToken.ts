@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { AccessToken, Code } from "../components/types";
 import { accessTokenDataAdd } from "../redux/slices/dataSlice";
 
-export async function getAccessToken(code: string) {
+export async function getAccessToken(code: string | string[] | undefined) {
   const dispatch = useDispatch();
   const Token = await axios.get(
     "https://www.linkedin.com/oauth/v2/accessToken",
