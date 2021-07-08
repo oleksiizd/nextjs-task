@@ -1,4 +1,4 @@
-export interface answerType {
+export interface IAnswerType {
   profilePicture: {
     displayImage: string;
   };
@@ -13,4 +13,24 @@ export interface answerType {
   id: string;
   localizedFirstName: string;
   localizedLastName: string;
+}
+
+export interface Code {
+  code: string;
+}
+
+export interface AccessToken {
+  status: number;
+  statusText: string;
+  headers: {};
+  data: {
+    access_token: string;
+    expires_in: number;
+  };
+  config: {};
+}
+
+export interface initialState {
+  accessTokenStoreData: string;
+  userStoreData: {};
 }

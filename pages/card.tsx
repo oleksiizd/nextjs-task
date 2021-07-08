@@ -3,10 +3,12 @@ import styles from "../styles/Home.module.css";
 import axios, { AxiosResponse } from "axios";
 import { GetServerSideProps } from "next";
 
-import { answerType } from "../components/types";
+import { Code, IAnswerType } from "../components/types";
+import { getAccessToken } from "../services/getAccessToken";
+import { getUserData } from "../services/getUserData";
 
 interface Props {
-  answerr: answerType;
+  answerr: IAnswerType;
 }
 
 export default function Cardpage(props: Props) {
@@ -35,28 +37,8 @@ export default function Cardpage(props: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const code = context.query.code;
-  const accessToken: AxiosResponse = await axios.get(
-    "https://www.linkedin.com/oauth/v2/accessToken",
-    {
-      params: {
-        grant_type: "authorization_code",
-        code: code,
-        client_id: "785jez5b2sszz3",
-        client_secret: "jVWgwjpVD90zlz6c",
-        redirect_uri: "http://localhost:3000/cardpage",
-      },
-    }
-  );
-
-  const answer: AxiosResponse<answerType> = await axios.get(
-    "https://api.linkedin.com/v2/me",
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken.data.access_token}`,
-      },
-    }
-  );
-  console.log("Answer --- ", answer.data);
+  const accessToken = getAccessToken(code);
+  const answer = getUserData(accessToken.data);
 
   return {
     props: { answerr: answer.data },
