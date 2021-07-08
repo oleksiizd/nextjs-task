@@ -30,7 +30,7 @@ export interface AccessToken {
   config: {};
 }
 
-export interface initialState {
+export interface InitialState {
   accessTokenStoreData: string;
   userStoreData: {};
 }

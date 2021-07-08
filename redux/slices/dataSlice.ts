@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { Code } from "../../components/types";
-import initialState from "../../components/types";
+import { InitialState } from "../../components/types";
 
-const initialState: initialState = {
+const initialState: InitialState = {
   accessTokenStoreData: "",
   userStoreData: {},
 };
