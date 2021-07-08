@@ -1,10 +1,20 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import axios, { AxiosResponse } from "axios";
-import { getURL } from "next/dist/next-server/lib/utils";
 import { GetServerSideProps } from "next";
 
-export default function Cardpage() {
+import { answerType } from "../components/types";
+
+interface Props {
+  answerr: answerType;
+}
+
+export default function Cardpage(props: Props) {
+  const answerrr = JSON.stringify(props.answerr, null, 2);
+  const { localizedLastName, id, localizedFirstName, ...rest } = props.answerr;
+  const { profilePicture, ...rest2 } = rest;
+  const { displayImage } = profilePicture;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,6 +24,11 @@ export default function Cardpage() {
       </Head>
 
       <h1 className={styles.title}>Card Page</h1>
+      <p>{answerrr}</p>
+      <p>{localizedLastName}</p>
+      <p>{id}</p>
+      <p>{localizedFirstName}</p>
+      <p>{displayImage}</p>
     </div>
   );
 }
@@ -26,29 +41,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       params: {
         grant_type: "authorization_code",
         code: code,
-        client_id: "",
-        client_secret: "",
+        client_id: "785jez5b2sszz3",
+        client_secret: "jVWgwjpVD90zlz6c",
         redirect_uri: "http://localhost:3000/cardpage",
       },
     }
   );
-
-  interface answerType {
-    profilePicture: {
-      displayImage: string;
-    };
-    firstName: {
-      localized: {};
-      preferredLocale: {};
-    };
-    lastName: {
-      localized: {};
-      preferredLocale: {};
-    };
-    id: string;
-    localizedFirstName: string;
-    localizedLastName: string;
-  }
 
   const answer: AxiosResponse<answerType> = await axios.get(
     "https://api.linkedin.com/v2/me",
@@ -58,10 +56,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     }
   );
-
   console.log("Answer --- ", answer.data);
 
   return {
-    props: {},
+    props: { answerr: answer.data },
   };
 };
