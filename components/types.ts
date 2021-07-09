@@ -15,11 +15,7 @@ export interface IAnswerType {
   localizedLastName: string;
 }
 
-export interface Code {
-  code: string;
-}
-
-export interface AccessToken {
+export interface IAccessToken {
   status: number;
   statusText: string;
   headers: {};
@@ -28,9 +24,4 @@ export interface AccessToken {
     expires_in: number;
   };
   config: {};
-}
-
-export interface InitialState {
-  accessTokenStoreData: string;
-  userStoreData: {};
 }
