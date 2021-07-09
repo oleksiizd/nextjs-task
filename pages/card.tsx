@@ -1,11 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import axios, { AxiosResponse } from "axios";
 import { GetServerSideProps } from "next";
 
-import { Code, IAnswerType } from "../components/types";
-import { getAccessToken } from "../services/getAccessToken";
+import { IAnswerType } from "../components/types";
 import { getUserData } from "../services/getUserData";
+import { useRouter } from "next/router";
 
 interface Props {
   answerr: IAnswerType;
@@ -36,11 +35,12 @@ export default function Cardpage(props: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const code = context.query.code;
-  const accessToken = getAccessToken(code);
-  const answer = getUserData(accessToken.data);
+  const code = context.query.code as string;
+  const path = context.req.headers.referer as string;
+
+  const answer = getUserData(code, path);
 
   return {
-    props: { answerr: answer.data },
+    props: { answerr: await answer },
   };
 };

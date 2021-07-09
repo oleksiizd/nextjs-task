@@ -13,7 +13,7 @@ export default function Home() {
       <h1 className={styles.title}>Sign In Page</h1>
 
       <div className={styles.input}>
-        <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=123&scope=r_liteprofile&client_id=785jez5b2sszz3&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcardpage">
+        <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=123&scope=r_liteprofile&client_id=785jez5b2sszz3&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcard">
           Click here
         </a>
       </div>
