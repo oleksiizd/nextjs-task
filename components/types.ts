@@ -25,3 +25,8 @@ export interface IAccessToken {
   };
   config: {};
 }
+
+export interface IData {
+  access_token: string;
+  expires_in: number;
+}
