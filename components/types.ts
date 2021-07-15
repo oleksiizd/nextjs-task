@@ -1,3 +1,11 @@
+import { AppProps } from "next/app";
+import { NextComponentType, NextPageContext } from "next";
+import { AxiosResponse } from "axios";
+
+export interface IAppProps extends AppProps {
+  Component: NextComponentType<NextPageContext, {}, {}>;
+}
+
 export interface IAnswerType {
   profilePicture: {
     displayImage: string;
@@ -15,18 +23,15 @@ export interface IAnswerType {
   localizedLastName: string;
 }
 
-export interface IAccessToken {
-  status: number;
-  statusText: string;
-  headers: {};
-  data: {
-    access_token: string;
-    expires_in: number;
-  };
-  config: {};
-}
-
 export interface IData {
   access_token: string;
   expires_in: number;
 }
+
+export interface ICardProps {
+  props: {
+    linkedinUserData: AxiosResponse;
+  };
+}
+
+export type IAnchor = "right";

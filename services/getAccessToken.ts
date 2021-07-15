@@ -1,12 +1,7 @@
 import { IData } from "../components/types";
 import instance from "../utils/getLinkedInAxiosInstance";
 
-export async function getAccessToken(
-  authorizationCode: string,
-  hostString: string
-) {
-  const pathcard = hostString + "cardpage";
-
+export async function getAccessToken(authorizationCode: string) {
   const linkedinAccessToken = await instance.get<IData>(
     "oauth/v2/accessToken",
     {
