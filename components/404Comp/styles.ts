@@ -1,3 +1,4 @@
+import { Height } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import theme from "../../themes/theme";
 
@@ -81,7 +82,7 @@ const useStyles = makeStyles({
     textTransform: "none",
   },
 
-  middleContent: {
+  content: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -178,7 +179,7 @@ const useStyles = makeStyles({
   },
   termsConditionsDiv: {
     height: 21,
-    margin: "30px, 0px",
+    margin: "30px",
     fontFamily: "Roboto",
     fontWeight: 500,
     fontSize: 14,
@@ -197,7 +198,7 @@ const useStyles = makeStyles({
   socialIcons: {
     display: "flex",
     justifyContent: "center",
-    margin: "50px, 0px",
+    margin: "50px",
     [theme.breakpoints.up("sm")]: {
       margin: "0px 32px 35px 0px",
       justifyContent: "center",
@@ -216,7 +217,7 @@ const useStyles = makeStyles({
   },
 
   title: {
-    fontSize: "3rem",
+    fontSize: "2rem",
     textAlign: "center",
   },
 
@@ -226,6 +227,26 @@ const useStyles = makeStyles({
     justifyContent: "center",
     flexDirection: "column",
     fontSize: "1.5rem",
+  },
+
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "auto",
+  },
+
+  profilePicture: {
+    borderRadius: "50%",
+    margin: 10,
   },
 });
 

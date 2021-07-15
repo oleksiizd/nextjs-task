@@ -9,7 +9,9 @@ export interface IAppProps extends AppProps {
 export interface IAnswerType {
   profilePicture: {
     displayImage: string;
+    ["displayImage~"]: { elements: IElements[] };
   };
+
   firstName: {
     localized: { en_US: string };
     preferredLocale: { country: string; language: string };
@@ -23,6 +25,13 @@ export interface IAnswerType {
   localizedLastName: string;
 }
 
+interface IElements {
+  identifiers: Iidentifiers[];
+}
+interface Iidentifiers {
+  identifier: string;
+}
+
 export interface IData {
   access_token: string;
   expires_in: number;
@@ -30,8 +39,6 @@ export interface IData {
 
 export interface ICardProps {
   props: {
-    linkedinUserData: AxiosResponse;
+    linkedinUserData: IAnswerType;
   };
 }
-
-export type IAnchor = "right";

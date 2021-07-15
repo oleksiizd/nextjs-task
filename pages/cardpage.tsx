@@ -1,10 +1,10 @@
 import { GetServerSideProps } from "next";
-import { ICardProps } from "../components/types";
 import { getUserData } from "../services/getUserData";
 import { getAccessToken } from "../services/getAccessToken";
 import CardPageContent from "../components/CardComp";
+import { IAnswerType } from "../components/types";
 
-export default function Cardpage(props) {
+export default function Cardpage(props: { linkedinUserData: IAnswerType }) {
   return <CardPageContent props={props} />;
 }
 
