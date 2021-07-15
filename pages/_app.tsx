@@ -6,14 +6,6 @@ import theme from "../themes/theme";
 import { IAppProps } from "../components/types";
 
 export default function MyApp({ Component, pageProps }: IAppProps) {
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
   return (
     <React.Fragment>
       <Head>
