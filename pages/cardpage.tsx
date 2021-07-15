@@ -1,22 +1,17 @@
 import { GetServerSideProps } from "next";
-import { IAnswerType } from "../components/types";
+import { ICardProps } from "../components/types";
 import { getUserData } from "../services/getUserData";
 import { getAccessToken } from "../services/getAccessToken";
-import CardComp from "../components/CardComp";
+import CardPageContent from "../components/CardComp";
 
-interface Props {
-  linkedinUserData: IAnswerType;
-}
-
-export default function Cardpage(props: Props) {
-  return <CardComp props={props} />;
+export default function Cardpage(props) {
+  return <CardPageContent props={props} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const authorizationCode = context.query.code as string;
-  const hostString = context.req.headers.referer as string;
 
-  const accessToken = await getAccessToken(authorizationCode, hostString);
+  const accessToken = await getAccessToken(authorizationCode);
   const requestUserData = await getUserData(accessToken);
   return {
     props: { linkedinUserData: requestUserData },
