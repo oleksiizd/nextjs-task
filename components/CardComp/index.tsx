@@ -8,14 +8,9 @@ import Image from "next/image";
 
 export default function CardPageContent({ props }: ICardProps) {
   const classes = useStyles();
-  const stringifyLinkedinUserData = JSON.stringify(
-    props.linkedinUserData,
-    null,
-    2
-  );
   const { localizedLastName, localizedFirstName, profilePicture, ...rest } =
     props.linkedinUserData;
-  const image =
+  const linkedInImage =
     profilePicture["displayImage~"].elements[1].identifiers[0].identifier;
   return (
     <div>
@@ -28,7 +23,13 @@ export default function CardPageContent({ props }: ICardProps) {
         <Card>
           <CardContent className={classes.cardContent}>
             <h1 className={classes.title}>LinkedIn Card</h1>
-            <img className={classes.profilePicture} src={image} alt="avatar" />
+            <Image
+              className={classes.profilePicture}
+              width="200"
+              height="200"
+              src={linkedInImage}
+              alt="LinkedIn Image"
+            />
             <Typography>First Name: {localizedFirstName}</Typography>
             <Typography>Last Name: {localizedLastName} </Typography>
             <Link href="/">
