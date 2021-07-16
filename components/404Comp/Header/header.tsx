@@ -12,28 +12,34 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 export default function Header() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    right: false,
-  });
+  const [isOpen, setOpen] = React.useState(false);
 
-  const toggleDrawer =
+  const toggleDrawerOpen =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
+        (event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift"
       ) {
         return;
       }
 
-      setState({ right: open });
+      setOpen(open);
+    };
+
+  const ToggleDrawerKeyDown =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (event.type === "keydown") {
+        return;
+      }
+
+      setOpen(open);
     };
 
   const list = () => (
     <div
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      onClick={toggleDrawerOpen(false)}
+      onKeyDown={ToggleDrawerKeyDown(false)}
     >
       <List>
         {["Pricing", "Blog", "DashBoard"].map((text) => (
@@ -57,15 +63,15 @@ export default function Header() {
       <div>
         <div className={classes.menuButton}>
           <Button
-            onClick={toggleDrawer(true)}
+            onClick={toggleDrawerOpen(true)}
             startIcon={<MenuIcon />}
             size="large"
             color="inherit"
-          ></Button>
+          />
           <Drawer
             anchor="right"
-            open={state["right"]}
-            onClose={toggleDrawer(false)}
+            open={isOpen}
+            onClose={toggleDrawerOpen(false)}
           >
             {list()}
           </Drawer>

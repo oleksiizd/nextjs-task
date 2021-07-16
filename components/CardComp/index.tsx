@@ -23,13 +23,13 @@ export default function CardPageContent({ props }: ICardProps) {
         <Card>
           <CardContent className={classes.cardContent}>
             <h1 className={classes.title}>LinkedIn Card</h1>
-            <Image
-              className={classes.profilePicture}
-              width="200"
-              height="200"
-              src={linkedInImage}
-              alt="LinkedIn Image"
-            />
+            <div className={classes.profilePictureWrap}>
+              <img
+                className={classes.profilePicture}
+                src={linkedInImage}
+                alt="LinkedIn Image"
+              ></img>
+            </div>
             <Typography>First Name: {localizedFirstName}</Typography>
             <Typography>Last Name: {localizedLastName} </Typography>
             <Link href="/">
