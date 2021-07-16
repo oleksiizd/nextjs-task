@@ -4,15 +4,11 @@ import theme from "../../themes/theme";
 
 const useStyles = makeStyles({
   container: {
-    background: "#1D1F21",
     color: "white",
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    backgroundImage: "url(/GroupString.svg)",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
+    background: "#1D1F21 url(/GroupString.svg) center/cover no-repeat",
   },
 
   header: { display: "flex", justifyContent: "space-between" },
@@ -243,10 +239,11 @@ const useStyles = makeStyles({
     alignItems: "center",
     margin: "auto",
   },
-
+  profilePictureWrap: {
+    marginBottom: 20,
+  },
   profilePicture: {
     borderRadius: "50%",
-    margin: 10,
   },
 });
 
