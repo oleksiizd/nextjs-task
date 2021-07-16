@@ -1,5 +1,5 @@
 import useStyles from "../styles";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Button,
   List,
@@ -14,8 +14,15 @@ export default function Header() {
   const classes = useStyles();
   const [isOpen, setOpen] = React.useState(false);
 
-  const toggleDrawerOpen =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+  const toggleDrawerOpen = (open: boolean) => (event: React.MouseEvent) => {
+    if (event.type === "keydown") {
+      return;
+    }
+
+    setOpen(open);
+  };
+  const ToggleDrawerKeyDown =
+    (open: boolean) => (event: React.KeyboardEvent) => {
       if (
         (event as React.KeyboardEvent).key === "Tab" ||
         (event as React.KeyboardEvent).key === "Shift"
@@ -26,30 +33,28 @@ export default function Header() {
       setOpen(open);
     };
 
-  const ToggleDrawerKeyDown =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (event.type === "keydown") {
-        return;
-      }
+  function list() {
+    return (
+      <div
+        role="presentation"
+        onClick={toggleDrawerOpen(false)}
+        onKeyDown={ToggleDrawerKeyDown(false)}
+      >
+        <List>
+          {["Pricing", "Blog", "DashBoard"].map((text) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+  }
 
-      setOpen(open);
-    };
+  const list2 = useMemo(() => {
+    return list();
+  }, [isOpen]);
 
-  const list = () => (
-    <div
-      role="presentation"
-      onClick={toggleDrawerOpen(false)}
-      onKeyDown={ToggleDrawerKeyDown(false)}
-    >
-      <List>
-        {["Pricing", "Blog", "DashBoard"].map((text) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
   return (
     <div className={classes.header}>
       <div className={classes.groupLogo}>
@@ -73,13 +78,19 @@ export default function Header() {
             open={isOpen}
             onClose={toggleDrawerOpen(false)}
           >
-            {list()}
+            {list2}
           </Drawer>
         </div>
         <div className={classes.topButtons}>
-          <Button className={classes.pricing}>Pricing</Button>
-          <Button className={classes.blog}>Blog</Button>
-          <Button className={classes.dashboard}>Dashboard</Button>
+          <div className={classes.headerButton}>
+            <Button color="inherit">Pricing</Button>
+          </div>
+          <div className={classes.headerButton}>
+            <Button color="inherit">Blog</Button>
+          </div>
+          <div className={classes.headerButton}>
+            <Button color="inherit">Dashboard</Button>
+          </div>
         </div>
       </div>
     </div>
