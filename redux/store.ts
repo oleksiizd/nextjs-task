@@ -1,6 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import { IInitialStoreState } from "../types/types";
 import userDataSlice from "./slices/reducer";
-let store: any;
+let store: EnhancedStore<IInitialStoreState> | null;
 
 const configureStorePreloaded = (preloadedState?: any) => {
   const result = configureStore({

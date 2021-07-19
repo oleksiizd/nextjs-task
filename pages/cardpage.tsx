@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getUserData } from "../services/getUserData";
 import { getAccessToken } from "../services/getAccessToken";
 import CardPageContent from "../components/CardComp";
-import { IAnswerType } from "../types/types";
+import { IStoreState } from "../types/types";
 import { initializeStore } from "../redux/store";
 import { setData } from "../redux/slices/reducer";
 
@@ -15,12 +15,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const accessToken = await getAccessToken(authorizationCode);
 
-  const reduxStore = initializeStore({});
+  const reduxStore = initializeStore();
   const { dispatch } = reduxStore;
 
   const requestUserData = await getUserData(accessToken);
 
-  const userDataState: IAnswerType = {
+  const userDataState: IStoreState = {
     localizedFirstName: requestUserData.localizedFirstName,
     localizedLastName: requestUserData.localizedLastName,
     profilePicture: requestUserData.profilePicture,

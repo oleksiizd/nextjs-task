@@ -10,11 +10,9 @@ export default function CardPageContent() {
   const classes = useStyles();
   const data = useSelector(userDataSelector);
 
-  const FirstName = data.localizedFirstName;
-  const LastName = data.localizedLastName;
-  const linkedInImage =
-    data.profilePicture["displayImage~"].elements[1].identifiers[0].identifier;
-
+  const firstName = data.localizedFirstName;
+  const lastName = data.localizedLastName;
+  const linkedInImage = data.profilePicture;
   return (
     <div>
       <Head>
@@ -33,8 +31,8 @@ export default function CardPageContent() {
                 alt="LinkedIn Image"
               ></img>
             </div>
-            <Typography>First Name: {FirstName}</Typography>
-            <Typography>Last Name: {LastName} </Typography>
+            <Typography>First Name: {firstName}</Typography>
+            <Typography>Last Name: {lastName} </Typography>
             <Link href="/">
               <a>Back to home</a>
             </Link>
