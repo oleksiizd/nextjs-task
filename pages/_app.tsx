@@ -3,9 +3,16 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../themes/theme";
-import { IAppProps } from "../components/types";
+import { IAppProps, IInitState } from "../types/types";
+import { Provider } from "react-redux";
+import { initializeStore } from "../redux/store";
 
 export default function MyApp({ Component, pageProps }: IAppProps) {
+  const useInitializedStore = (initialState: IInitState) => {
+    return initializeStore(initialState);
+  };
+
+  const reduxStore = useInitializedStore(pageProps.initialReduxState);
   return (
     <React.Fragment>
       <Head>
@@ -16,9 +23,10 @@ export default function MyApp({ Component, pageProps }: IAppProps) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+        <Provider store={reduxStore}>
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </React.Fragment>
   );
