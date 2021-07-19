@@ -12,8 +12,5 @@ export async function getUserData(
       },
     }
   );
-  const linkedInImageDirectPath =
-    requestUserData.data.profilePicture["displayImage~"].elements[1]
-      .identifiers[0].identifier;
-  return { ...requestUserData.data, profilePicture: linkedInImageDirectPath };
+  return { ...requestUserData.data };
 }

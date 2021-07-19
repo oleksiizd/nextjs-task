@@ -17,7 +17,7 @@ export default function Header() {
   const toggleDrawerOpen = (open: boolean) => () => {
     return setOpen(open);
   };
-  const ToggleDrawerKeyDown =
+  const toggleDrawerKeyDown =
     (open: boolean) => (event: React.KeyboardEvent) => {
       if (
         event.type === "keydown" &&
@@ -34,7 +34,7 @@ export default function Header() {
       <div
         role="presentation"
         onClick={toggleDrawerOpen(false)}
-        onKeyDown={ToggleDrawerKeyDown(false)}
+        onKeyDown={toggleDrawerKeyDown(false)}
       >
         <List>
           {["Pricing", "Blog", "DashBoard"].map((text) => (
@@ -45,7 +45,7 @@ export default function Header() {
         </List>
       </div>
     );
-  }, [isOpen]);
+  }, [toggleDrawerOpen, toggleDrawerKeyDown]);
 
   return (
     <div className={classes.header}>

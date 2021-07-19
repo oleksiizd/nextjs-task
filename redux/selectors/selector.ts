@@ -1,3 +1,3 @@
-import { IInitState } from "../../types/types";
+import { IRootState } from "../../types/types";
 
-export const userDataSelector = (state: IInitState) => state.data;
+export const userDataSelector = (state: IRootState) => state.userData;

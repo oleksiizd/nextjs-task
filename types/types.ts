@@ -36,12 +36,12 @@ export interface ILinkedinAuthData {
   expires_in: number;
 }
 
-export interface IInitialStoreState {
-  data: IStoreState;
+export interface IUserDataState {
+  lastName: string;
+  firstName: string;
+  picture: string;
 }
 
-export interface IStoreState {
-  localizedLastName: string;
-  localizedFirstName: string;
-  profilePicture: string;
+export interface IRootState {
+  userData: IUserDataState;
 }
