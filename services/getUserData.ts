@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IData } from "../components/types";
+import { IData } from "../types/types";
 
 export async function getUserData(linkedinAccessToken: AxiosResponse<IData>) {
   const requestUserData = await axios.get(

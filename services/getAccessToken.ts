@@ -1,4 +1,4 @@
-import { IData } from "../components/types";
+import { IData } from "../types/types";
 import instance from "../utils/getLinkedInAxiosInstance";
 
 export async function getAccessToken(authorizationCode: string) {

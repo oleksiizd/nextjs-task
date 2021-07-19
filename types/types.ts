@@ -12,15 +12,15 @@ export interface IAnswerType {
     ["displayImage~"]: { elements: IElements[] };
   };
 
-  firstName: {
+  firstName?: {
     localized: { en_US: string };
     preferredLocale: { country: string; language: string };
   };
-  lastName: {
+  lastName?: {
     localized: { en_US: string };
     preferredLocale: { country: string; language: string };
   };
-  id: string;
+  id?: string;
   localizedFirstName: string;
   localizedLastName: string;
 }
@@ -37,8 +37,6 @@ export interface IData {
   expires_in: number;
 }
 
-export interface ICardProps {
-  props: {
-    linkedinUserData: IAnswerType;
-  };
+export interface IInitState {
+  data: IAnswerType;
 }

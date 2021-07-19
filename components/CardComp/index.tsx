@@ -1,17 +1,20 @@
 import Head from "next/head";
 import useStyles from "../404Comp/styles";
-import { IAnswerType, ICardProps } from "../types";
 import Link from "next/link";
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import Image from "next/image";
+import { useSelector } from "react-redux";
+import { userDataSelector } from "../../redux/selectors/selector";
 
-export default function CardPageContent({ props }: ICardProps) {
+export default function CardPageContent() {
   const classes = useStyles();
-  const { localizedLastName, localizedFirstName, profilePicture, ...rest } =
-    props.linkedinUserData;
+  const data = useSelector(userDataSelector);
+
+  const FirstName = data.localizedFirstName;
+  const LastName = data.localizedLastName;
   const linkedInImage =
-    profilePicture["displayImage~"].elements[1].identifiers[0].identifier;
+    data.profilePicture["displayImage~"].elements[1].identifiers[0].identifier;
+
   return (
     <div>
       <Head>
@@ -30,8 +33,8 @@ export default function CardPageContent({ props }: ICardProps) {
                 alt="LinkedIn Image"
               ></img>
             </div>
-            <Typography>First Name: {localizedFirstName}</Typography>
-            <Typography>Last Name: {localizedLastName} </Typography>
+            <Typography>First Name: {FirstName}</Typography>
+            <Typography>Last Name: {LastName} </Typography>
             <Link href="/">
               <a>Back to home</a>
             </Link>

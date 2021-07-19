@@ -1,4 +1,3 @@
-import { Height } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import theme from "../../themes/theme";
 
