@@ -10,9 +10,9 @@ export default function CardPageContent() {
   const classes = useStyles();
   const data = useSelector(userDataSelector);
 
-  const firstName = data.localizedFirstName;
-  const lastName = data.localizedLastName;
-  const linkedInImage = data.profilePicture;
+  const firstName = data.firstName;
+  const lastName = data.lastName;
+  const linkedInImage = data.picture;
   return (
     <div>
       <Head>

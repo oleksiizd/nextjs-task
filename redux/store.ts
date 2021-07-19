@@ -1,18 +1,20 @@
 import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
-import { IInitialStoreState } from "../types/types";
+import { IRootState, IUserDataState } from "../types/types";
 import userDataSlice from "./slices/reducer";
-let store: EnhancedStore<IInitialStoreState> | null;
+let store: ReturnType<typeof configureStorePreloaded> | null;
 
-const configureStorePreloaded = (preloadedState?: any) => {
+const configureStorePreloaded = (preloadedState?: IRootState) => {
   const result = configureStore({
     devTools: true,
-    reducer: userDataSlice,
+    reducer: {
+      userData: userDataSlice,
+    },
     preloadedState,
   });
   return result;
 };
 
-export const initializeStore = (preloadedState?: any) => {
+export const initializeStore = (preloadedState?: IRootState) => {
   let reinitializedStore = store ?? configureStorePreloaded(preloadedState);
   if (preloadedState && store) {
     reinitializedStore = configureStorePreloaded({
