@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAnswerType } from "../../types/types";
+import { IInitialStoreState, IStoreState } from "../../types/types";
 
-const initialState = {
+const initialState: IInitialStoreState = {
   data: {
     localizedFirstName: "",
     localizedLastName: "",
-    profilePicture: {},
+    profilePicture: "",
   },
 };
 
@@ -13,7 +13,7 @@ export const userDataSlice = createSlice({
   name: "userDataSlice",
   initialState,
   reducers: {
-    setData: (state, action: PayloadAction<IAnswerType>) => {
+    setData: (state, action: PayloadAction<IStoreState>) => {
       state.data = action.payload;
     },
   },

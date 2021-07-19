@@ -11,7 +11,6 @@ const useStyles = makeStyles({
   },
 
   header: { display: "flex", justifyContent: "space-between" },
-  groupStrings: {},
   groupLogo: {
     margin: "23px 0px 23px 25px",
   },

@@ -1,12 +1,11 @@
 import { AppProps } from "next/app";
 import { NextComponentType, NextPageContext } from "next";
-import { AxiosResponse } from "axios";
 
 export interface IAppProps extends AppProps {
   Component: NextComponentType<NextPageContext, {}, {}>;
 }
 
-export interface IAnswerType {
+export interface ILinkedinUserResponse {
   profilePicture: {
     displayImage: string;
     ["displayImage~"]: { elements: IElements[] };
@@ -32,11 +31,17 @@ interface Iidentifiers {
   identifier: string;
 }
 
-export interface IData {
+export interface ILinkedinAuthData {
   access_token: string;
   expires_in: number;
 }
 
-export interface IInitState {
-  data: IAnswerType;
+export interface IInitialStoreState {
+  data: IStoreState;
+}
+
+export interface IStoreState {
+  localizedLastName: string;
+  localizedFirstName: string;
+  profilePicture: string;
 }

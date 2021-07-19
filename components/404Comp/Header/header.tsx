@@ -14,18 +14,14 @@ export default function Header() {
   const classes = useStyles();
   const [isOpen, setOpen] = React.useState(false);
 
-  const toggleDrawerOpen = (open: boolean) => (event: React.MouseEvent) => {
-    if (event.type === "keydown") {
-      return;
-    }
-
-    setOpen(open);
+  const toggleDrawerOpen = (open: boolean) => () => {
+    return setOpen(open);
   };
   const ToggleDrawerKeyDown =
     (open: boolean) => (event: React.KeyboardEvent) => {
       if (
-        (event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift"
+        event.type === "keydown" &&
+        (event.key === "Tab" || event.key === "Shift")
       ) {
         return;
       }
@@ -33,7 +29,7 @@ export default function Header() {
       setOpen(open);
     };
 
-  function list() {
+  const list = useMemo(() => {
     return (
       <div
         role="presentation"
@@ -49,10 +45,6 @@ export default function Header() {
         </List>
       </div>
     );
-  }
-
-  const list2 = useMemo(() => {
-    return list();
   }, [isOpen]);
 
   return (
@@ -78,7 +70,7 @@ export default function Header() {
             open={isOpen}
             onClose={toggleDrawerOpen(false)}
           >
-            {list2}
+            {list}
           </Drawer>
         </div>
         <div className={classes.topButtons}>

@@ -1,8 +1,8 @@
-import { IData } from "../types/types";
+import { ILinkedinAuthData } from "../types/types";
 import instance from "../utils/getLinkedInAxiosInstance";
 
 export async function getAccessToken(authorizationCode: string) {
-  const linkedinAccessToken = await instance.get<IData>(
+  const linkedinAccessToken = await instance.get<ILinkedinAuthData>(
     "oauth/v2/accessToken",
     {
       params: {
