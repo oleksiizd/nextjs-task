@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../themes/theme";
 import { IAppProps } from "../types/types";
 import { Provider } from "react-redux";
-import { useInitializedStore } from "../redux/hooks/hooks";
+import { useInitializedStore } from "../redux/hooks/useInitializedStore";
 
 export default function MyApp({ Component, pageProps }: IAppProps) {
   const reduxStore = useInitializedStore(pageProps.initialReduxState);

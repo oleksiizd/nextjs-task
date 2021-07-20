@@ -1,5 +1,5 @@
 import useStyles from "../styles";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import {
   Button,
   List,
@@ -14,11 +14,16 @@ export default function Header() {
   const classes = useStyles();
   const [isOpen, setOpen] = React.useState(false);
 
-  const toggleDrawerOpen = (open: boolean) => () => {
-    return setOpen(open);
-  };
-  const toggleDrawerKeyDown =
+  const toggleDrawerOpen = useCallback(
+    (open: boolean) => () => {
+      console.log("Mouse");
+      return setOpen(open);
+    },
+    [setOpen]
+  );
+  const toggleDrawerKeyDown = useCallback(
     (open: boolean) => (event: React.KeyboardEvent) => {
+      console.log("Keyboard");
       if (
         event.type === "keydown" &&
         (event.key === "Tab" || event.key === "Shift")
@@ -27,7 +32,9 @@ export default function Header() {
       }
 
       setOpen(open);
-    };
+    },
+    [setOpen]
+  );
 
   const list = useMemo(() => {
     return (
